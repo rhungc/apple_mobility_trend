@@ -31,6 +31,8 @@ walking <- date %>% select(relative_usage = walking, date) %>% mutate(type = "wa
 transportation <- rbind(driving, transit, walking)
 View(transportation)
 
+transportation <- transportation %>% mutate(weekdays = weekdays(date))
+
 #Plot the trend by category 
 ggplot(transportation, aes(x = date, y = relative_usage, color = type)) + geom_line() +
   ggtitle("Trend of relative usage of transportation type in Canada")
